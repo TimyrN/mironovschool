@@ -124,7 +124,7 @@ const App: React.FC = () => {
         {/* Footer */}
         <footer className="py-8 text-center text-slate-400 text-xs">
           <p>© {new Date().getFullYear()} {TEACHER_PROFILE.name}</p>
-          <p className="mt-1 opacity-50">Все права защищены</p>
+          <p className="mt-1 opacity-50">Все права защищены | v2.1</p>
         </footer>
 
       </div>

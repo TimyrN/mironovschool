@@ -1,0 +1,5 @@
+{
+  "name": "TeacherLink",
+  "description": "A professional link-in-bio application designed for teachers, featuring social aggregation, course listings, and an AI-powered teaching assistant bot.",
+  "requestFramePermissions": []
+}

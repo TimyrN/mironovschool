@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const chatId = '-1005003431677';
 
     // Debugging (logs to Vercel logs)
-    console.log('Function invoked [v2.6 - Prefix -100]');
+    console.log('Function invoked [v2.8 - Revert to -500 prefix]');
     console.log('Method:', req.method);
     console.log('Token exists:', !!token);
     console.log('ChatId used:', chatId);

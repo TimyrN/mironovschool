@@ -2,11 +2,11 @@ export default async function handler(req, res) {
     // Config - Using Hardcoded Fallback for debugging
     const token = process.env.TELEGRAM_BOT_TOKEN ? process.env.TELEGRAM_BOT_TOKEN.trim() : '';
 
-    // HARDCODED ID FOR DEBUGGING - PRIORITIZING THIS
-    const chatId = '-5003431677';
+    // HARDCODED ID FOR DEBUGGING - ATTEMPT 2 (Prefix -100)
+    const chatId = '-1005003431677';
 
     // Debugging (logs to Vercel logs)
-    console.log('Function invoked [v2.4 - Hardcoded ChatID]');
+    console.log('Function invoked [v2.6 - Prefix -100]');
     console.log('Method:', req.method);
     console.log('Token exists:', !!token);
     console.log('ChatId used:', chatId);

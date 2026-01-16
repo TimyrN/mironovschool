@@ -73,13 +73,7 @@ const App: React.FC = () => {
             {TEACHER_PROFILE.bio}
           </p>
 
-          <button
-            onClick={() => setIsContactModalOpen(true)}
-            className="bg-slate-900 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
-          >
-            <MessageCircle className="w-4 h-4" />
-            Связаться
-          </button>
+
 
         </header>
 
@@ -119,12 +113,31 @@ const App: React.FC = () => {
             </section>
           )}
 
+          {/* Special 'Leave Request' Button */}
+          <button
+            onClick={() => setIsContactModalOpen(true)}
+            className="group relative flex items-center p-4 mb-3 w-full rounded-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-lg"
+          >
+            <div className="flex-shrink-0 mr-4">
+              <MessageCircle className="w-6 h-6 text-white" />
+            </div>
+
+            <div className="flex-grow text-left">
+              <div className="font-semibold text-base">Оставить заявку</div>
+              <div className="text-xs opacity-80 mt-0.5 font-light">Записаться на занятие или задать вопрос</div>
+            </div>
+
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <Share2 className="w-4 h-4 rotate-90" />
+            </div>
+          </button>
+
         </main>
 
         {/* Footer */}
         <footer className="py-8 text-center text-slate-400 text-xs">
           <p>© {new Date().getFullYear()} {TEACHER_PROFILE.name}</p>
-          <p className="mt-1 opacity-50">Все права защищены | v2.5</p>
+          <p className="mt-1 opacity-50">Все права защищены | v2.7</p>
         </footer>
 
       </div>

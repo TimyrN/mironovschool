@@ -55,11 +55,12 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                 });
             }
 
+            const data = await response.json().catch(() => ({}));
+
             if (!response.ok) {
-                throw new Error('Failed to send request');
+                throw new Error(data.message || data.description || `Error ${response.status}: Failed to send`);
             }
 
-            const data = await response.json();
             if (data.success) {
                 setStatus('success');
                 setTimeout(() => {
@@ -71,10 +72,10 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                 throw new Error(data.message || 'Error sending message');
             }
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("Submission error:", error);
             setStatus('error');
-            setErrorMessage('Ошибка отправки. Попробуйте позже.');
+            setErrorMessage(error.message || 'Ошибка отправки. Попробуйте позже.');
         } finally {
             if (status !== 'success') {
                 // Reset loading state if not successful immediately (or let error persist)

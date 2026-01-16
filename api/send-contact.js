@@ -1,4 +1,15 @@
 export default async function handler(req, res) {
+    // Config
+    const token = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+
+    // Debugging (logs to Vercel logs)
+    console.log('Function invoked');
+    console.log('Method:', req.method);
+    console.log('Token exists:', !!token);
+    console.log('ChatId exists:', !!chatId);
+
+    // CORS / Method check
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method Not Allowed' });
     }
@@ -7,18 +18,21 @@ export default async function handler(req, res) {
 
     // SPAM Check: Hidden field (Honeypot) should be empty
     if (website) {
-        return res.status(200).json({ success: true }); // Fake success for bots
+        console.log('Spam detected (honeypot)');
+        return res.status(200).json({ success: true });
     }
 
     if (!name || !phone) {
         return res.status(400).json({ message: 'Name and phone are required' });
     }
 
-    const token = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
-
     if (!token || !chatId) {
-        return res.status(500).json({ message: 'Server configuration error' });
+        console.error('Missing env vars');
+        return res.status(500).json({
+            message: 'Server configuration error: Missing Telegram Token or Chat ID',
+            debug_token: !!token,
+            debug_chatId: !!chatId
+        });
     }
 
     const message = `
@@ -46,12 +60,13 @@ ${question || 'Не указан'}
         const data = await response.json();
 
         if (!response.ok) {
+            console.error('Telegram API Error:', data);
             throw new Error(data.description || 'Telegram API Error');
         }
 
         return res.status(200).json({ success: true });
     } catch (error) {
         console.error('Telegram Error:', error);
-        return res.status(500).json({ message: 'Failed to send message' });
+        return res.status(500).json({ message: 'Failed to send message: ' + error.message });
     }
 }

@@ -1,10 +1,10 @@
 export default async function handler(req, res) {
-    // Config
-    const token = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_CHAT_ID;
+    // Config - Force reload attempt 2
+    const token = process.env.TELEGRAM_BOT_TOKEN ? process.env.TELEGRAM_BOT_TOKEN.trim() : '';
+    const chatId = process.env.TELEGRAM_CHAT_ID ? process.env.TELEGRAM_CHAT_ID.trim() : '';
 
     // Debugging (logs to Vercel logs)
-    console.log('Function invoked');
+    console.log('Function invoked [v2.2]'); // Changed log to force update
     console.log('Method:', req.method);
     console.log('Token exists:', !!token);
     console.log('ChatId exists:', !!chatId);

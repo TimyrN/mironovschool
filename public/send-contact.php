@@ -34,7 +34,7 @@ $chatId = '935251827';
 $message = "📩 *Новая заявка с сайта!*\n\n";
 $message .= "👤 *Имя:* " . $name . "\n";
 $message .= "📱 *Телефон:* " . $phone . "\n";
-$message .= "❓ *Вопрос:*\n" . ($question ?: 'Не указан');
+$message .= "❓ *Вопрос:* " . ($question ?: 'Не указан');
 
 $url = "https://api.telegram.org/bot{$token}/sendMessage";
 $postData = [

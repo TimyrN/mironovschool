@@ -40,8 +40,7 @@ export default async function handler(req, res) {
 
 👤 *Имя:* ${name}
 📱 *Телефон:* ${phone}
-❓ *Вопрос:*
-${question || 'Не указан'}
+❓ *Вопрос:* ${question || 'Не указан'}
   `;
 
     try {

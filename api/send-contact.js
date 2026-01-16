@@ -1,14 +1,15 @@
 export default async function handler(req, res) {
-    // Config - Force reload attempt 3 (Channel ID Switch)
+    // Config - Using Hardcoded Fallback for debugging
     const token = process.env.TELEGRAM_BOT_TOKEN ? process.env.TELEGRAM_BOT_TOKEN.trim() : '';
-    const chatId = process.env.TELEGRAM_CHAT_ID ? process.env.TELEGRAM_CHAT_ID.trim() : '';
+
+    // HARDCODED ID FOR DEBUGGING - PRIORITIZING THIS
+    const chatId = '-5003431677';
 
     // Debugging (logs to Vercel logs)
-    console.log('Function invoked [v2.3 - Channel ID Switch]');
+    console.log('Function invoked [v2.4 - Hardcoded ChatID]');
     console.log('Method:', req.method);
     console.log('Token exists:', !!token);
-    console.log('ChatId exists:', !!chatId);
-    console.log('ChatId value starts with:', chatId ? chatId.substring(0, 4) : 'null'); // Debug partial ID
+    console.log('ChatId used:', chatId);
 
     // CORS / Method check
     if (req.method !== 'POST') {
@@ -27,12 +28,10 @@ export default async function handler(req, res) {
         return res.status(400).json({ message: 'Name and phone are required' });
     }
 
-    if (!token || !chatId) {
+    if (!token) {
         console.error('Missing env vars');
         return res.status(500).json({
-            message: 'Server configuration error: Missing Telegram Token or Chat ID',
-            debug_token: !!token,
-            debug_chatId: !!chatId
+            message: 'Server configuration error: Missing Telegram Token'
         });
     }
 
